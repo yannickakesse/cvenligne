@@ -181,10 +181,20 @@ h1 .ln:nth-child(2)>span{transition-delay:.12s}
 @media(max-width:900px){.about{grid-template-columns:1fr;gap:28px}}
 .about .txt p{color:var(--muted)}
 .about .txt p:first-child{color:var(--text);font-size:1.15rem}
-.dims{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:40px}
-@media(max-width:700px){.dims{grid-template-columns:1fr}}
-.dims div{border-top:1px solid var(--text);padding-top:16px;font-size:.94rem;color:var(--muted)}
-.dims b{display:block;font:italic 400 1.7rem/1.1 var(--serif);color:var(--text);margin-bottom:6px}
+.dims{position:relative;display:grid;gap:38px;margin-top:48px;padding-left:52px}
+.dims::before,.dims::after{content:"";position:absolute;left:9px;top:var(--y0,14px);width:1px;background:var(--line)}
+.dims::before{height:calc(var(--y1,200px) - var(--y0,14px))}
+.dims::after{background:linear-gradient(var(--accent),color-mix(in srgb,var(--accent) 40%,transparent));height:var(--fill,0px)}
+.dims div{position:relative;font-size:.94rem;color:var(--muted);opacity:.38;transition:opacity .6s,transform .7s var(--ease)}
+.dims div::before{content:"";position:absolute;left:-49px;top:12px;width:13px;height:13px;border-radius:50%;background:var(--bg);border:1.5px solid var(--soft);transition:background .4s,border-color .4s,transform .5s var(--ease)}
+.dims div.on{opacity:1}
+.dims div>*{display:block;transition:transform .7s var(--ease)}
+.dims div.on>*{transform:translateX(8px)}
+.dims div.on::before{background:var(--accent);border-color:var(--accent);transform:scale(1.15)}
+.dims b{display:block;font:italic 400 2.2rem/1.05 var(--serif);color:var(--text);margin-bottom:6px}
+.dims .ball{position:absolute;left:3px;top:0;width:13px;height:13px;border-radius:50%;background:var(--accent);z-index:2;box-shadow:0 0 0 6px color-mix(in srgb,var(--accent) 16%,transparent),0 0 26px 6px color-mix(in srgb,var(--accent) 55%,transparent);transform:translateY(var(--by,14px));transition:transform .35s cubic-bezier(.34,1.56,.64,1)}
+.dims .ball.hit{animation:squash .45s var(--ease)}
+@keyframes squash{30%{scale:1.35 .7}60%{scale:.9 1.12}100%{scale:1}}
 
 /* ============ Expertise ============ */
 .sand{background:var(--sand)}
@@ -434,6 +444,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 .no-js h1 .ln>span,.no-js .wd>span{transform:none}
 .no-js .portrait .frame,.no-js .reveal-img{clip-path:none}
 .no-js .motto .w{opacity:1}
+.no-js .dims div{opacity:1}
 .no-js .circuit .n{opacity:1;transform:none}.no-js .circuit .run{stroke-dashoffset:0}.no-js .journey::after{transform:none}
 .no-js #intro{display:none}
 </style>
@@ -501,7 +512,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
     <p data-i18n="a2">Diplômé d'un Master en Littérature et Civilisation Américaines de l'Université Félix Houphouët-Boigny de Cocody, j'ai d'abord enseigné l'anglais, notamment à l'Adventiste Private School puis à l'ISTG Saint-Pierre-Marie, de 2021-2022 à 2024-2025.</p>
     <p data-i18n="a3">J'ai ensuite élargi mon activité à la formation en entreprise, au coaching en anglais professionnel et à l'interprétation anglais-français : auprès d'entreprises, de structures de formation et de délégations internationales, en présentiel comme en ligne.</p>
     <p data-i18n="a4">Aujourd'hui, je réunis ces expériences dans SpeakPro Academy, la plateforme d'apprentissage et de coaching en anglais que j'ai fondée pour rendre l'anglais plus accessible et plus utile aux professionnels francophones.</p>
-    <div class="dims">
+    <div class="dims" id="dims"><i class="ball" aria-hidden="true"></i>
       <div><b data-i18n="d1t">Interpréter</b><span data-i18n="d1">apprend à écouter vite et juste.</span></div>
       <div><b data-i18n="d2t">Enseigner</b><span data-i18n="d2">apprend à expliquer simplement.</span></div>
       <div><b data-i18n="d3t">Coacher</b><span data-i18n="d3">fait pratiquer jusqu'à l'aisance.</span></div>
@@ -644,7 +655,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
       <span class="status" data-i18n="j4s">Application en évolution</span><h3>Remind Me</h3>
       <p data-i18n="j4">Application de productivité et d'organisation personnelle autour des activités, des tâches, du calendrier, des rappels et du suivi financier, pour mieux gérer ses échéances.</p>
       <p class="meta"><b data-i18n="rl">Rôle :</b> <span data-i18n="j4r">conception et développement du produit</span></p>
-      <a class="btn" href="https://remind-me-saas.vercel.app/" target="_blank" rel="noopener"><span data-i18n="j4b">Découvrir l'application</span></a></div></article>
+      <a class="btn" href="https://tryremind-me.vercel.app/" target="_blank" rel="noopener"><span data-i18n="j4b">Découvrir l'application</span></a></div></article>
     <article class="rv" style="--d:.1s"><div class="shot" style="background:rgb(148,91,38)"><img src="media/projets/yanova-logo.webp" width="900" height="300" alt="Logo Yanova Store" loading="lazy"></div><div class="pb">
       <span class="status" data-i18n="j5s">Boutique en ligne existante</span><h3>Yanova Store</h3>
       <p data-i18n="j5">Première expérience de création de boutique en ligne avec Shopify, pour se familiariser avec les outils du commerce électronique.</p>
@@ -849,6 +860,18 @@ bg.addEventListener('click',()=>{const o=nav.classList.toggle('open');bg.setAttr
 links.forEach(a=>a.addEventListener('click',closeMenu));
 document.addEventListener('keydown',e=>{if(e.key==='Escape'&&nav.classList.contains('open')){closeMenu();bg.focus()}});
 
+/* Interpréter → Enseigner → Coacher : la boule descend avec le défilement */
+const dims=document.getElementById('dims'),ball=dims.querySelector('.ball'),dItems=[...dims.querySelectorAll('div')];let dLast=-1;
+function dimsFlow(){
+  const ys=dItems.map(d=>d.offsetTop+12);const y0=ys[0],y1=ys[ys.length-1];
+  dims.style.setProperty('--y0',(y0+6)+'px');dims.style.setProperty('--y1',(y1+6)+'px');
+  const r=dims.getBoundingClientRect();
+  let p=RM?1:Math.min(1,Math.max(0,(innerHeight*.62-r.top-y0)/(y1-y0)));
+  const y=y0+p*(y1-y0);
+  ball.style.setProperty('--by',y+'px');dims.style.setProperty('--fill',Math.max(0,y-y0)+'px');
+  let n=-1;dItems.forEach((d,i)=>{const on=y>=ys[i]-2;d.classList.toggle('on',on);if(on)n=i});
+  if(n>dLast&&n>0){ball.classList.remove('hit');void ball.offsetWidth;ball.classList.add('hit')}dLast=n;
+}
 /* Effets liés au défilement */
 const prog=document.querySelector('.progress'),motto=document.getElementById('motto'),tl=document.getElementById('tl');
 const par=[...document.querySelectorAll('[data-speed]')];
@@ -863,6 +886,7 @@ function onScroll(){
   if(ws.length){const p=Math.min(1,Math.max(0,(innerHeight*.85-r.top)/(r.height+innerHeight*.35)));const k=Math.round(p*ws.length);ws.forEach((w,i)=>w.classList.toggle('on',i<k))}
   const cs=document.querySelector('.campus .front'),cr=cs.closest('.campus').getBoundingClientRect();
   if(!RM&&cr.top<innerHeight&&cr.bottom>0)cs.style.setProperty('--cy',(Math.max(0,1-(innerHeight-cr.top)/(cr.height+innerHeight))*60).toFixed(1)+'px');
+  dimsFlow();
   const tr=tl.getBoundingClientRect();tl.style.setProperty('--p',Math.min(1,Math.max(0,(innerHeight*.7-tr.top)/tr.height)));
   if(!RM)par.forEach(el=>{const b=el.parentElement.getBoundingClientRect();if(b.bottom<-200||b.top>innerHeight+200)return;
     const c=(b.top+b.height/2-innerHeight/2);el.style.transform='translate3d(0,'+(c*-parseFloat(el.dataset.speed)).toFixed(1)+'px,0)'});

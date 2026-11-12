@@ -103,7 +103,7 @@ nav a.on{color:var(--bg)}
 
 /* ============ Boutons ============ */
 .cta{display:flex;flex-wrap:wrap;align-items:center;gap:14px 34px;margin-top:40px}
-.btn{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:0 30px;text-decoration:none;font:600 .74rem/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;border:1px solid var(--text);transition:background .35s,color .35s,border-color .35s;overflow:hidden}
+.btn{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:0 30px;text-decoration:none;font:600 .74rem/1.4 var(--sans);letter-spacing:.2em;text-transform:uppercase;text-align:center;padding-top:12px;padding-bottom:12px;border:1px solid var(--text);transition:background .35s,color .35s,border-color .35s;overflow:hidden}
 .btn.pri{background:var(--accent-bg);border-color:var(--accent-bg);color:#fff}
 .btn.pri::after{content:"";position:absolute;inset:0;background:#8E4325;transform:translateY(101%);transition:transform .45s var(--ease)}
 .btn.pri:hover::after{transform:none}
@@ -251,7 +251,24 @@ h1 .ln:nth-child(2)>span{transition-delay:.12s}
 .rows li{display:grid;grid-template-columns:120px 1fr 1.5fr;gap:28px;align-items:baseline;padding:34px 0;border-bottom:1px solid var(--line)}
 .rows h3{font-size:clamp(1.9rem,3.4vw,2.6rem)}
 .rows p{margin:0;color:var(--muted)}
-.steps .num{font:italic 3.4rem/1 var(--serif);color:var(--accent)}
+.journey{list-style:none;padding:0;margin:20px 0 0;display:grid;grid-template-columns:repeat(3,1fr);gap:48px;position:relative}
+.journey::before,.journey::after{content:"";position:absolute;left:0;right:0;top:8px;height:1px;background:var(--line)}
+.journey::after{background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform 1.8s var(--ease) .3s}
+.journey.in::after{transform:none}
+.journey li{position:relative;padding-top:44px}
+.journey li::before{content:"";position:absolute;top:0;left:0;width:17px;height:17px;border-radius:50%;background:var(--bg);border:2px solid var(--accent);z-index:1;transition:background .4s}
+.journey li:last-child::before{background:var(--accent)}
+.journey .stage{display:block;font-size:.66rem;letter-spacing:.26em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:10px}
+.journey h3{font-size:clamp(2rem,3.4vw,2.6rem);margin-bottom:12px}
+.journey p{margin:0;color:var(--muted)}
+@media(max-width:760px){
+  .journey{grid-template-columns:1fr;gap:0;margin-top:30px}
+  .journey::before,.journey::after{left:8px;right:auto;top:8px;bottom:8px;width:1px;height:auto}
+  .journey::after{transform:scaleY(0);transform-origin:top}
+  .journey.in::after{transform:none}
+  .journey li{padding:0 0 38px 44px}
+  .journey li:last-child{padding-bottom:0}
+}
 .fmt-t{margin-top:90px}
 .formats li{grid-template-columns:1fr 1.5fr 48px;transition:padding .5s var(--ease)}
 .formats .arr{justify-self:end;text-decoration:none;font-size:1.4rem;color:var(--soft);transition:transform .5s var(--ease),color .3s}
@@ -259,8 +276,7 @@ h1 .ln:nth-child(2)>span{transition-delay:.12s}
 @media(max-width:760px){
   .rows li{grid-template-columns:auto 1fr;gap:8px 18px;padding:26px 0}
   .rows li p{grid-column:1/-1}
-  .steps .num{font-size:2.4rem}
-  .formats li{grid-template-columns:1fr auto}
+    .formats li{grid-template-columns:1fr auto}
   .formats .arr{grid-row:1;grid-column:2}
 }
 
@@ -290,9 +306,22 @@ h1 .ln:nth-child(2)>span{transition-delay:.12s}
 .status{align-self:flex-start;font-size:.64rem;letter-spacing:.2em;text-transform:uppercase;border:1px solid currentColor;color:var(--accent);border-radius:99px;padding:5px 12px;font-weight:600}
 .meta{font-size:.92rem}.meta b{color:var(--accent);font-weight:600}
 .feat p,.proj p{margin:0;color:var(--muted)}
-.method{display:flex;flex-wrap:wrap;gap:6px;list-style:none;padding:0;margin:0;counter-reset:m}
-.method li{counter-increment:m;font-size:.82rem;border-radius:99px;background:var(--bg);border:1px solid var(--line);padding:4px 12px}
-.method li::before{content:counter(m) " · ";color:var(--accent);font-weight:600}
+.circuit{max-width:420px;width:100%}
+.circuit svg{width:100%;height:auto;overflow:visible}
+.circuit .track{fill:none;stroke:var(--line);stroke-width:2}
+.circuit .run{fill:none;stroke:var(--accent);stroke-width:2;stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 2.4s var(--ease) .2s}
+.circuit.in .run{stroke-dashoffset:0}
+.circuit .n{opacity:0;transform:scale(.6);transform-box:fill-box;transform-origin:center;transition:opacity .5s,transform .6s var(--ease);transition-delay:calc(.25s + var(--i)*.32s)}
+.circuit.in .n{opacity:1;transform:none}
+.circuit .n circle{fill:var(--surface);stroke:var(--accent);stroke-width:1.5}
+.circuit .n.end circle{fill:var(--accent)}
+.circuit .k{font:600 11px var(--sans);fill:var(--accent);text-anchor:middle}
+.circuit .n.end .k{fill:#1a1210}
+.circuit .l{font:italic 17px var(--serif);fill:var(--text);text-anchor:middle}
+.circuit .tag{font:600 8px var(--sans);letter-spacing:2px;fill:var(--soft);text-anchor:middle}
+.circuit .trav{fill:var(--accent);opacity:0}
+@supports (offset-path:path("M0 0")){.circuit.in .trav{opacity:1;offset-path:path("M40 62 H290 A55 55 0 0 1 290 172 H40");animation:trav 7s linear 2.6s infinite}}
+@keyframes trav{from{offset-distance:0%}to{offset-distance:100%}}
 .feat .btn{align-self:flex-start;margin-top:10px}
 .proj{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:22px}
 @media(max-width:760px){.proj{grid-template-columns:1fr}}
@@ -372,14 +401,22 @@ h1 .ln:nth-child(2)>span{transition-delay:.12s}
 .contact .lead{color:rgba(242,238,231,.7)}
 .contact .btn{border-color:rgba(242,238,231,.4);color:var(--on-night)}
 .contact .btn:hover{border-color:var(--on-night)}
-.contact .btn.wa{background:#25D366;border-color:#25D366;color:#0f240f}
-.contact .btn.wa:hover{background:#1fb457;border-color:#1fb457}
-.cgrid{display:grid;grid-template-columns:1.15fr .85fr;gap:60px;align-items:end}
-@media(max-width:900px){.cgrid{grid-template-columns:1fr;gap:34px}}
-.clist{border-top:1px solid rgba(242,238,231,.18)}
-.clist div{display:flex;justify-content:space-between;gap:14px;padding:16px 0;border-bottom:1px solid rgba(242,238,231,.18);flex-wrap:wrap}
-.clist small{color:rgba(242,238,231,.55);font-size:.66rem;letter-spacing:.2em;text-transform:uppercase}
-.clist a{text-decoration:none;transition:color .3s}.clist a:hover{color:var(--accent-l)}
+.ctop{display:grid;grid-template-columns:1.15fr .85fr;gap:60px;align-items:end;margin-bottom:70px}
+@media(max-width:900px){.ctop{grid-template-columns:1fr;gap:20px;margin-bottom:50px}}
+.ctiles{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid rgba(242,238,231,.16)}
+.tile{position:relative;display:flex;flex-direction:column;gap:12px;min-height:200px;padding:26px 24px 24px;text-decoration:none;color:var(--on-night);border-right:1px solid rgba(242,238,231,.16);overflow:hidden}
+.tile:last-child{border-right:0}
+.tile::before{content:"";position:absolute;inset:0;background:var(--accent-bg);transform:scaleY(0);transform-origin:bottom;transition:transform .55s var(--ease)}
+.tile>*{position:relative}
+.tile small{font-size:.64rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(242,238,231,.55);transition:color .4s}
+.tile b{font:400 1.5rem/1.2 var(--serif);overflow-wrap:anywhere}
+.tile .go{margin-top:auto;display:flex;justify-content:space-between;align-items:center;font:600 .68rem var(--sans);letter-spacing:.2em;text-transform:uppercase;color:rgba(242,238,231,.7);transition:color .4s}
+.tile .go i{font-style:normal;font-size:1.1rem;transition:transform .5s var(--ease)}
+.tile:hover::before,.tile:focus-visible::before{transform:none}
+.tile:hover small,.tile:hover .go{color:#fff}
+.tile:hover .go i{transform:translate(3px,-3px)}
+@media(max-width:1000px){.ctiles{grid-template-columns:1fr 1fr}.tile:nth-child(2){border-right:0}.tile:nth-child(-n+2){border-bottom:1px solid rgba(242,238,231,.16)}}
+@media(max-width:560px){.ctiles{grid-template-columns:1fr}.tile{min-height:0;border-right:0;border-bottom:1px solid rgba(242,238,231,.16);padding:22px 20px}.tile:last-child{border-bottom:0}.tile .go{margin-top:6px}}
 footer{background:var(--night);color:rgba(242,238,231,.5);padding:26px 0 34px;font-size:.8rem;border-top:1px solid rgba(242,238,231,.1)}
 footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 
@@ -397,6 +434,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 .no-js h1 .ln>span,.no-js .wd>span{transform:none}
 .no-js .portrait .frame,.no-js .reveal-img{clip-path:none}
 .no-js .motto .w{opacity:1}
+.no-js .circuit .n{opacity:1;transform:none}.no-js .circuit .run{stroke-dashoffset:0}.no-js .journey::after{transform:none}
 .no-js #intro{display:none}
 </style>
 </head>
@@ -534,10 +572,10 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
     <p class="want-w" aria-hidden="true"><span id="rot">décrocher un emploi.</span></p>
     <ul class="sr-only" id="goals"><li data-i18n="g1">Décrocher un emploi</li><li data-i18n="g2">Réussir un entretien</li><li data-i18n="g3">Participer à une réunion internationale</li><li data-i18n="g4">Présenter un projet</li><li data-i18n="g5">Communiquer avec des collègues ou partenaires étrangers</li><li data-i18n="g6">Préparer le TOEFL, le TOEIC ou un concours</li><li data-i18n="g7">Oser enfin parler anglais</li></ul>
   </div>
-  <ol class="rows steps">
-    <li class="rv"><span class="num">01</span><h3 data-i18n="s1t">Évaluer</h3><p data-i18n="s1">Comprendre votre niveau réel, vos blocages et l'objectif que vous voulez atteindre.</p></li>
-    <li class="rv"><span class="num">02</span><h3 data-i18n="s2t">Construire</h3><p data-i18n="s2">Concevoir un programme adapté à votre métier, à votre examen ou à votre situation.</p></li>
-    <li class="rv"><span class="num">03</span><h3 data-i18n="s3t">Pratiquer</h3><p data-i18n="s3">Utiliser l'anglais pour de vrai : pratique orale, mises en situation, corrections et suivi jusqu'à l'aisance.</p></li>
+  <ol class="journey rv">
+    <li><span class="stage" data-i18n="js1">Début</span><h3 data-i18n="s1t">Évaluer</h3><p data-i18n="s1">Comprendre votre niveau réel, vos blocages et l'objectif que vous voulez atteindre.</p></li>
+    <li><span class="stage" data-i18n="js2">Milieu</span><h3 data-i18n="s2t">Construire</h3><p data-i18n="s2">Concevoir un programme adapté à votre métier, à votre examen ou à votre situation.</p></li>
+    <li><span class="stage" data-i18n="js3">Fin</span><h3 data-i18n="s3t">Pratiquer</h3><p data-i18n="s3">Utiliser l'anglais pour de vrai : pratique orale, mises en situation, corrections et suivi jusqu'à l'aisance.</p></li>
   </ol>
   <p class="eyebrow fmt-t" data-i18n="fo0">Formats</p>
   <ul class="rows formats">
@@ -583,7 +621,20 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
       <p data-i18n="j3">Plateforme d'apprentissage et de coaching en anglais pensée pour les francophones : un test de niveau gratuit, un test complet sur 5 compétences, des parcours en ligne (Classic, Practice, Premium), des programmes spécialisés (Business English, TOEFL / TOEIC, IELTS, Academic English, préparation à l'ENA, entretiens d'embauche…), des séances avec des coachs et des ressources gratuites.</p>
       <p class="meta"><b data-i18n="rl">Rôle :</b> <span data-i18n="j3r">fondateur — vision du projet, conception pédagogique des parcours, coaching, et pilotage de la conception et du développement de la plateforme.</span></p>
       <p class="meta"><b data-i18n="j3ml">Méthode :</b></p>
-      <ol class="method"><li data-i18n="m1">Évaluer</li><li data-i18n="m2">Structurer</li><li data-i18n="m3">Pratiquer</li><li data-i18n="m4">Corriger</li><li data-i18n="m5">Progresser</li><li data-i18n="m6">Performer</li></ol>
+      <figure class="circuit rv" style="margin:0">
+        <svg viewBox="0 0 360 232" role="img" aria-labelledby="circ-t"><title id="circ-t">Méthode en 6 étapes : évaluer, structurer, pratiquer, corriger, progresser, performer</title>
+          <path class="track" d="M40 62 H290 A55 55 0 0 1 290 172 H40"/>
+          <path class="run" pathLength="1" d="M40 62 H290 A55 55 0 0 1 290 172 H40"/>
+          <circle class="trav" r="4"/>
+          <g class="n" style="--i:0"><circle cx="40" cy="62" r="14"/><text class="k" x="40" y="66">1</text><text class="l" x="40" y="32" data-i18n="m1">Évaluer</text></g>
+          <g class="n" style="--i:1"><circle cx="165" cy="62" r="14"/><text class="k" x="165" y="66">2</text><text class="l" x="165" y="32" data-i18n="m2">Structurer</text></g>
+          <g class="n" style="--i:2"><circle cx="290" cy="62" r="14"/><text class="k" x="290" y="66">3</text><text class="l" x="290" y="32" data-i18n="m3">Pratiquer</text></g>
+          <g class="n" style="--i:3"><circle cx="290" cy="172" r="14"/><text class="k" x="290" y="176">4</text><text class="l" x="290" y="210" data-i18n="m4">Corriger</text></g>
+          <g class="n" style="--i:4"><circle cx="165" cy="172" r="14"/><text class="k" x="165" y="176">5</text><text class="l" x="165" y="210" data-i18n="m5">Progresser</text></g>
+          <g class="n end" style="--i:5"><circle cx="40" cy="172" r="14"/><text class="k" x="40" y="176">6</text><text class="l" x="40" y="210" data-i18n="m6">Performer</text></g>
+          <text class="tag" x="40" y="98" data-i18n="rs">DÉBUT</text><text class="tag" x="40" y="144" data-i18n="rf">FIN</text>
+        </svg>
+      </figure>
       <a class="btn pri mag" href="https://speakproacademy.net/" target="_blank" rel="noopener"><span data-i18n="j3b">Découvrir la plateforme</span></a>
     </div>
   </article>
@@ -662,22 +713,25 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 </div></section>
 
 <!-- CONTACT -->
-<section class="contact" id="contact"><div class="wrap cgrid">
-  <div>
-    <p class="eyebrow" data-i18n="k0">Contact</p>
-    <h2 class="rv" data-split data-i18n="k1">Parlons de votre <em class="accent">objectif en anglais.</em></h2>
-    <p class="lead" data-i18n="k2">Coaching individuel, formation d'équipe, interprétation ou collaboration : un message suffit pour démarrer.</p>
-    <div class="cta">
-      <a class="btn wa mag round" href="https://wa.me/2250747745785" target="_blank" rel="noopener"><span data-i18n="k3">Écrire sur WhatsApp</span></a>
-      <a class="btn mag round" href="mailto:yannickakesse26@gmail.com"><span data-i18n="k4">Envoyer un e-mail</span></a>
-      <a class="btn mag round" href="yannick-akesse.vcf" download><span data-i18n="k5">Enregistrer le contact</span></a>
+<section class="contact" id="contact"><div class="wrap">
+  <div class="ctop">
+    <div>
+      <p class="eyebrow" data-i18n="k0">Contact</p>
+      <h2 class="rv" data-split data-i18n="k1">Parlons de votre <em class="accent">objectif en anglais.</em></h2>
+    </div>
+    <div>
+      <p class="lead" data-i18n="k2">Coaching individuel, formation d'équipe, interprétation ou collaboration : un message suffit pour démarrer.</p>
+      <div class="cta">
+        <a class="btn pri mag" href="https://wa.me/2250747745785" target="_blank" rel="noopener"><span data-i18n="k3">Écrire sur WhatsApp</span></a>
+        <a class="btn mag" href="yannick-akesse.vcf" download><span data-i18n="k5">Enregistrer le contact</span></a>
+      </div>
     </div>
   </div>
-  <div class="clist">
-    <div><small>WhatsApp</small><a href="https://wa.me/2250747745785">+225 07 47 74 57 85</a></div>
-    <div><small data-i18n="k6">E-mail</small><a href="mailto:yannickakesse26@gmail.com">yannickakesse26@gmail.com</a></div>
-    <div><small data-i18n="k7">Autre numéro</small><a href="tel:+2250576576165">+225 05 76 57 61 65</a></div>
-    <div><small>SpeakPro Academy</small><a href="https://speakproacademy.net/" target="_blank" rel="noopener">speakproacademy.net</a></div>
+  <div class="ctiles rv">
+    <a class="tile" href="https://wa.me/2250747745785" target="_blank" rel="noopener"><small>WhatsApp</small><b>+225 07 47 74 57 85</b><span class="go"><span data-i18n="kw">Écrire</span><i>↗</i></span></a>
+    <a class="tile" href="mailto:yannickakesse26@gmail.com"><small data-i18n="k6">E-mail</small><b>yannickakesse26<wbr>@gmail.com</b><span class="go"><span data-i18n="k4">Envoyer un e-mail</span><i>↗</i></span></a>
+    <a class="tile" href="tel:+2250576576165"><small data-i18n="k7">Autre numéro</small><b>+225 05 76 57 61 65</b><span class="go"><span data-i18n="k8">Appeler</span><i>↗</i></span></a>
+    <a class="tile" href="https://speakproacademy.net/" target="_blank" rel="noopener"><small>SpeakPro Academy</small><b>speakproacademy.net</b><span class="go"><span data-i18n="k9">Visiter la plateforme</span><i>↗</i></span></a>
   </div>
 </div></section>
 </main>
@@ -731,7 +785,7 @@ t7w:"Entrepreneurship",t7:"Founder of SpeakPro Academy",t7p:"A more modern and a
 w0:"Intellectual works",w1s:"Master's thesis",w1:"An academic study in American literature.",w2s:"Unpublished manuscript",w2:"A teaching manuscript of over 200 pages on learning English from French. Work in preparation, not yet available for purchase.",
 g0:"In pictures",g01:"Sessions, courses and <em class=\"accent\">certificate ceremonies.</em>",gc1:"Certificates awarded at the end of a course",gc2:"Leading a training session",gc3:"End of a course",
 q0:"Testimonials",q1:"They worked with me.",
-k0:"Contact",k1:"Let's talk about <em class=\"accent\">your English goals.</em>",k2:"One-to-one coaching, team training, interpreting or collaboration: one message is enough to get started.",k3:"Message on WhatsApp",k4:"Send an email",k5:"Save contact",k6:"Email",k7:"Other number",
+k0:"Contact",k1:"Let's talk about <em class=\"accent\">your English goals.</em>",k2:"One-to-one coaching, team training, interpreting or collaboration: one message is enough to get started.",k3:"Message on WhatsApp",k4:"Send an email",k5:"Save contact",k6:"Email",k7:"Other number",k8:"Call",k9:"Visit the platform",kw:"Message",js1:"Start",js2:"Middle",js3:"Finish",rs:"START",rf:"FINISH",
 ft:"Professional English coach · Abidjan"}};
 
 const root=document.documentElement,body=document.body;body.classList.remove('no-js');

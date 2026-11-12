@@ -177,10 +177,13 @@ h1 .ln:nth-child(2)>span{transition-delay:.12s}
 .in .reveal-img img,.reveal-img.in img{transform:scale(1)}
 
 /* ============ À propos ============ */
-.about{display:grid;grid-template-columns:.9fr 1.1fr;gap:70px;align-items:start}
-@media(max-width:900px){.about{grid-template-columns:1fr;gap:28px}}
-.about .txt p{color:var(--muted)}
-.about .txt p:first-child{color:var(--text);font-size:1.15rem}
+.about .wrap{text-align:center}
+.about .eyebrow{justify-content:center}
+.about .eyebrow::after{content:"";width:34px;height:1px;background:currentColor}
+.about h2{max-width:16ch;margin-left:auto;margin-right:auto}
+.about .sum{font:clamp(1.3rem,2.6vw,1.9rem)/1.4 var(--serif);color:var(--muted);max-width:34ch;margin:0 auto}
+.about .sum em{color:var(--text)}
+.about .dims{text-align:left;max-width:420px;margin:64px auto 0}
 .dims{position:relative;display:grid;gap:38px;margin-top:48px;padding-left:52px}
 .dims::before,.dims::after{content:"";position:absolute;left:9px;top:var(--y0,14px);width:1px;background:var(--line)}
 .dims::before{height:calc(var(--y1,200px) - var(--y0,14px))}
@@ -211,9 +214,21 @@ h1 .ln:nth-child(2)>span{transition-delay:.12s}
 .exp h3{font-size:clamp(2.2rem,4vw,3.2rem);margin:8px 0 6px}
 .exp .sub{font-size:.72rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;margin-bottom:18px;color:var(--soft)}
 .exp p{color:var(--muted)}
-.tags{display:flex;flex-wrap:wrap;gap:8px;list-style:none;padding:0;margin:20px 0 0}
-.tags li{border:1px solid var(--line);border-radius:99px;padding:6px 14px;font-size:.84rem;background:var(--bg);transition:background .3s,color .3s,border-color .3s}
-.tags li:hover{background:var(--text);color:var(--bg);border-color:var(--text)}
+.tags{display:grid;grid-template-columns:1fr 1fr;grid-auto-flow:row dense;gap:26px 34px;list-style:none;padding:0;margin:28px 0 0;counter-reset:t;max-width:460px}
+.tags li{position:relative;counter-increment:t;border:1px solid var(--line);background:var(--bg);padding:14px 16px 13px;font-size:.88rem;line-height:1.35;color:var(--text);transition:background .35s,border-color .35s,color .35s}
+.tags li::before{content:counter(t,decimal-leading-zero);display:block;font:italic .95rem/1 var(--serif);color:var(--accent);margin-bottom:6px;transition:color .35s}
+.tags li:nth-child(4n+3){grid-column:2}
+.tags li:nth-child(4n+4){grid-column:1}
+.tags li::after{content:"";position:absolute;background:var(--accent);opacity:.7;transition:transform .7s var(--ease);transition-delay:calc(.3s + var(--i,0)*.15s)}
+.tags li:nth-child(4n+1)::after{left:100%;top:50%;width:35px;height:1px;transform:scaleX(0);transform-origin:left}
+.tags li:nth-child(4n+2)::after{top:100%;left:50%;height:27px;width:1px;transform:scaleY(0);transform-origin:top}
+.tags li:nth-child(4n+3)::after{right:100%;top:50%;width:35px;height:1px;transform:scaleX(0);transform-origin:right}
+.tags li:nth-child(4n+4)::after{top:100%;left:50%;height:27px;width:1px;transform:scaleY(0);transform-origin:top}
+.tags li:last-child::after{display:none}
+.in .tags li::after{transform:none}
+.tags li:hover{background:var(--accent-bg);border-color:var(--accent-bg);color:#fff}
+.tags li:hover::before{color:#fff}
+@media(max-width:420px){.tags{gap:22px 26px}.tags li{font-size:.82rem;padding:12px 12px 11px}.tags li:nth-child(4n+1)::after,.tags li:nth-child(4n+3)::after{width:27px}.tags li:nth-child(4n+2)::after,.tags li:nth-child(4n+4)::after{height:23px}}
 
 /* ============ Interprétation (scène lumineuse) ============ */
 .cine{background:var(--night);color:var(--on-night);min-height:100vh;min-height:100svh;display:flex;flex-direction:column;justify-content:center;overflow:hidden;padding:150px 0 70px;isolation:isolate}
@@ -445,6 +460,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 .no-js .portrait .frame,.no-js .reveal-img{clip-path:none}
 .no-js .motto .w{opacity:1}
 .no-js .dims div{opacity:1}
+.no-js .tags li::after{transform:none}
 .no-js .circuit .n{opacity:1;transform:none}.no-js .circuit .run{stroke-dashoffset:0}.no-js .journey::after{transform:none}
 .no-js #intro{display:none}
 </style>
@@ -457,7 +473,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 <header id="hdr"><div class="wrap bar">
   <a class="logo" href="#top" aria-label="Yannick Akesse — accueil"><span class="mono" aria-hidden="true">YA</span><span class="full" aria-hidden="true">Yannick Akesse</span></a>
   <nav id="nav" aria-label="Navigation principale"><ul class="pill">
-    <li><a href="#apropos" data-i18n="n1">À propos</a></li>
+    <li><a href="#apropos" data-i18n="n1">À propos de moi</a></li>
     <li><a href="#expertise" data-i18n="n2">Expertise</a></li>
     <li><a href="#approche" data-i18n="n3">Approche</a></li>
     <li><a href="#projets" data-i18n="n4">Projets</a></li>
@@ -503,20 +519,14 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 </div></section>
 
 <!-- À PROPOS -->
-<section id="apropos" style="padding-top:40px"><div class="wrap about">
-  <div>
-    <p class="eyebrow" data-i18n="a0">À propos</p>
-    <h2 class="rv" data-split data-i18n="a1">Un parcours construit <em class="accent">entre deux langues.</em></h2>
-  </div>
-  <div class="txt rv" style="--d:.15s">
-    <p data-i18n="a2">Diplômé d'un Master en Littérature et Civilisation Américaines de l'Université Félix Houphouët-Boigny de Cocody, j'ai d'abord enseigné l'anglais, notamment à l'Adventiste Private School puis à l'ISTG Saint-Pierre-Marie, de 2021-2022 à 2024-2025.</p>
-    <p data-i18n="a3">J'ai ensuite élargi mon activité à la formation en entreprise, au coaching en anglais professionnel et à l'interprétation anglais-français : auprès d'entreprises, de structures de formation et de délégations internationales, en présentiel comme en ligne.</p>
-    <p data-i18n="a4">Aujourd'hui, je réunis ces expériences dans SpeakPro Academy, la plateforme d'apprentissage et de coaching en anglais que j'ai fondée pour rendre l'anglais plus accessible et plus utile aux professionnels francophones.</p>
-    <div class="dims" id="dims"><i class="ball" aria-hidden="true"></i>
-      <div><b data-i18n="d1t">Interpréter</b><span data-i18n="d1">apprend à écouter vite et juste.</span></div>
-      <div><b data-i18n="d2t">Enseigner</b><span data-i18n="d2">apprend à expliquer simplement.</span></div>
-      <div><b data-i18n="d3t">Coacher</b><span data-i18n="d3">fait pratiquer jusqu'à l'aisance.</span></div>
-    </div>
+<section id="apropos" class="about" style="padding-top:40px"><div class="wrap">
+  <p class="eyebrow" data-i18n="a0">À propos de moi</p>
+  <h2 class="rv" data-split data-i18n="a1">Un parcours construit <em class="accent">entre deux langues.</em></h2>
+  <p class="sum rv" style="--d:.15s" data-i18n="a5">Enseignant d'anglais, puis formateur, interprète et fondateur de SpeakPro&nbsp;Academy&nbsp;: <em>un seul fil, rendre l'anglais vraiment utile.</em></p>
+  <div class="dims" id="dims"><i class="ball" aria-hidden="true"></i>
+    <div><b data-i18n="d1t">Interpréter</b><span data-i18n="d1">apprend à écouter vite et juste.</span></div>
+    <div><b data-i18n="d2t">Enseigner</b><span data-i18n="d2">apprend à expliquer simplement.</span></div>
+    <div><b data-i18n="d3t">Coacher</b><span data-i18n="d3">fait pratiquer jusqu'à l'aisance.</span></div>
   </div>
 </div></section>
 
@@ -759,13 +769,13 @@ const MARQUEE={fr:["Coaching en anglais","Formation d'équipes","Interprétation
                en:["English coaching","Team training","Interpreting","Business English","TOEFL · TOEIC","IELTS","ENA exam preparation","Job interviews"]};
 
 const T={fr:{},en:{
-skip:"Skip to content",n1:"About",n2:"Expertise",n3:"Approach",n4:"Projects",n5:"Background",n6:"Contact",
+skip:"Skip to content",n1:"About me",n2:"Expertise",n3:"Approach",n4:"Projects",n5:"Background",n6:"Contact",
 h0:"English coach · Trainer · Interpreter",fdr:"Founder of SpeakPro Academy",scr:"Scroll",
 intro:"I work with executives, entrepreneurs, teams and individuals who need English that truly works for them: understanding, communicating and speaking with confidence in real situations, not just knowing grammar rules.",
 cta1:"Work with me",cta2:"See my projects",
 f1l:"Degree",f1:"Master's in American Literature and Civilisation",f2l:"University",f2:"Félix Houphouët-Boigny University, Cocody",f3l:"Working languages",f3:"English ⇄ French",
 motto:"Teaching, training, interpreting: three professions, one standard — <em>getting the message across without betraying it.</em>",
-a0:"About",a1:"A path built <em class=\"accent\">between two languages.</em>",
+a0:"About me",a5:"English teacher, then trainer, interpreter and founder of SpeakPro Academy: <em>one thread — making English truly useful.</em>",a1:"A path built <em class=\"accent\">between two languages.</em>",
 a2:"I hold a Master's degree in American Literature and Civilisation from Félix Houphouët-Boigny University in Cocody. I began by teaching English, notably at Adventiste Private School and then at ISTG Saint-Pierre-Marie, from 2021-2022 to 2024-2025.",
 a3:"I then broadened my work to corporate training, professional English coaching and English-French interpreting: with companies, training organisations and international delegations, both in person and online.",
 a4:"Today, I bring these experiences together in SpeakPro Academy, the English learning and coaching platform I founded to make English more accessible and more useful for French-speaking professionals.",
@@ -915,6 +925,7 @@ const rot=document.getElementById('rot');let gi=0;
 const goalsList=()=>[...document.querySelectorAll('#goals li')].map(li=>{const t=li.textContent.trim();return t.charAt(0).toLowerCase()+t.slice(1)+'.'});
 function setGoal(){const g=goalsList();rot.textContent=g[gi%g.length]}
 setGoal();document.querySelectorAll('.lang button').forEach(b=>b.addEventListener('click',setGoal));
+document.querySelectorAll('.tags li').forEach((li,i,a)=>li.style.setProperty('--i',[...li.parentNode.children].indexOf(li)));
 if(!RM)setInterval(()=>{rot.classList.add('out');setTimeout(()=>{gi++;setGoal();rot.classList.remove('out')},480)},2800);
 addEventListener('beforeprint',()=>document.querySelectorAll('.rv,.goals,.reveal-img').forEach(e=>e.classList.add('in')));
 

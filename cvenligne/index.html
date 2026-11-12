@@ -158,6 +158,18 @@ h1 .ln:nth-child(2)>span{transition-delay:.12s}
 .marquee:hover .track{animation-play-state:paused}
 @keyframes mq{to{transform:translateX(-50%)}}
 
+/* ============ Vidéo ============ */
+.film{padding:90px 0 0}
+.film-box{position:relative;aspect-ratio:16/9;border-radius:var(--r);overflow:hidden;background:#0b0c0f;box-shadow:0 40px 80px -40px rgba(0,0,0,.8);border:1px solid var(--line)}
+.film-box video{display:block;width:100%;height:100%;object-fit:cover}
+.snd{position:absolute;right:18px;bottom:18px;display:inline-flex;align-items:center;gap:10px;padding:11px 16px;background:rgba(11,12,15,.72);color:#F2EEE7;border:1px solid rgba(242,238,231,.3);font:600 .66rem var(--sans);letter-spacing:.2em;text-transform:uppercase;cursor:pointer;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);transition:background .3s,border-color .3s}
+.snd:hover{background:var(--accent-bg);border-color:var(--accent-bg)}
+.snd i{font-style:normal;font-size:.95rem;letter-spacing:0}
+.snd[aria-pressed=true] i{animation:beat 1s ease-in-out infinite}
+@keyframes beat{50%{transform:scale(1.25)}}
+.credit{font-size:.72rem;color:var(--soft);margin:12px 0 0;text-align:right}
+@media(max-width:600px){.film{padding-top:60px}.film-box{border-radius:10px}.snd{right:10px;bottom:10px;padding:9px 12px;font-size:.6rem}}
+
 /* ============ Devise (remplissage au défilement) ============ */
 .motto{padding:130px 0}
 .motto p{font:clamp(2rem,4.6vw,3.6rem)/1.15 var(--serif);max-width:20ch;margin:0 auto;text-align:center;letter-spacing:-.01em}
@@ -514,6 +526,15 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 
 <div class="marquee" aria-hidden="true"><div class="track" id="mq"></div></div>
 
+<!-- VIDÉO -->
+<section class="film" aria-label="Vidéo"><div class="wrap">
+  <div class="film-box rv">
+    <video id="film" muted loop playsinline preload="none" poster="media/video/presentation-fr.jpg" aria-label="Vidéo : les contextes où l'anglais est un vrai besoin, et les formations de Yannick Akesse"><source src="media/video/presentation-fr.mp4" type="video/mp4"></video>
+    <button class="snd" id="snd" type="button" aria-pressed="false"><i aria-hidden="true">♪</i><span id="snd-t">Activer le son</span></button>
+  </div>
+  <p class="credit" data-i18n="v2">Images d'illustration : Pexels. Musique originale.</p>
+</div></section>
+
 <section class="motto" aria-label="Devise"><div class="wrap">
   <p id="motto" data-i18n="motto">Enseigner, former, interpréter : trois métiers, une même exigence — <em>faire passer un message, sans le trahir.</em></p>
 </div></section>
@@ -806,7 +827,7 @@ t7w:"Entrepreneurship",t7:"Founder of SpeakPro Academy",t7p:"A more modern and a
 w0:"Intellectual works",w1s:"Master's thesis",w1:"An academic study in American literature.",w2s:"Unpublished manuscript",w2:"A teaching manuscript of over 200 pages on learning English from French. Work in preparation, not yet available for purchase.",
 g0:"In pictures",g01:"Sessions, courses and <em class=\"accent\">certificate ceremonies.</em>",gc1:"Certificates awarded at the end of a course",gc2:"Leading a training session",gc3:"End of a course",
 q0:"Testimonials",q1:"They worked with me.",
-k0:"Contact",k1:"Let's talk about <em class=\"accent\">your English goals.</em>",k2:"One-to-one coaching, team training, interpreting or collaboration: one message is enough to get started.",k3:"Message on WhatsApp",k4:"Send an email",k5:"Save contact",k6:"Email",k7:"Other number",k8:"Call",k9:"Visit the platform",kw:"Message",js1:"Start",js2:"Middle",js3:"Finish",rs:"START",rf:"FINISH",
+k0:"Contact",k1:"Let's talk about <em class=\"accent\">your English goals.</em>",k2:"One-to-one coaching, team training, interpreting or collaboration: one message is enough to get started.",k3:"Message on WhatsApp",k4:"Send an email",k5:"Save contact",v2:"Stock images: Pexels. Original music.",k6:"Email",k7:"Other number",k8:"Call",k9:"Visit the platform",kw:"Message",js1:"Start",js2:"Middle",js3:"Finish",rs:"START",rf:"FINISH",
 ft:"Professional English coach · Abidjan"}};
 
 const root=document.documentElement,body=document.body;body.classList.remove('no-js');
@@ -928,6 +949,21 @@ setGoal();document.querySelectorAll('.lang button').forEach(b=>b.addEventListene
 document.querySelectorAll('.tags li').forEach((li,i,a)=>li.style.setProperty('--i',[...li.parentNode.children].indexOf(li)));
 if(!RM)setInterval(()=>{rot.classList.add('out');setTimeout(()=>{gi++;setGoal();rot.classList.remove('out')},480)},2800);
 addEventListener('beforeprint',()=>document.querySelectorAll('.rv,.goals,.reveal-img').forEach(e=>e.classList.add('in')));
+
+/* Vidéo : lecture quand elle est visible, son à la demande, version selon la langue */
+const film=document.getElementById('film'),snd=document.getElementById('snd'),sndT=document.getElementById('snd-t');
+const SND={fr:["Activer le son","Couper le son"],en:["Sound on","Sound off"]};
+function filmLang(){
+  const src='media/video/presentation-'+cur+'.mp4';
+  if(!film.currentSrc.endsWith(src)){const was=!film.paused;film.poster='media/video/presentation-'+cur+'.jpg';film.querySelector('source').src=src;film.load();if(was)film.play().catch(()=>{})}
+  sndT.textContent=SND[cur][film.muted?0:1];
+}
+filmLang();document.querySelectorAll('.lang button').forEach(b=>b.addEventListener('click',filmLang));
+snd.addEventListener('click',()=>{film.muted=!film.muted;snd.setAttribute('aria-pressed',!film.muted);sndT.textContent=SND[cur][film.muted?0:1];if(film.paused)film.play().catch(()=>{})});
+if(RM){film.controls=true}
+else if('IntersectionObserver' in window){
+  new IntersectionObserver(es=>es.forEach(x=>{if(x.isIntersecting){film.play().catch(()=>{})}else film.pause()}),{threshold:.35}).observe(film);
+}
 
 /* Particules lumineuses du campus */
 const motes=document.querySelector('.campus .motes');

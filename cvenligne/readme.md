@@ -31,3 +31,8 @@ Une fois l'adresse définitive connue (par exemple `https://yannick-akesse.netli
 ```html
 <meta property="og:image" content="https://VOTRE-ADRESSE/media/og-yannick-akesse.jpg">
 ```
+
+## Vidéo de présentation
+- `media/video/presentation-fr.mp4` et `presentation-en.mp4` : la page affiche celle de la langue choisie. Elle démarre sans le son, et le bouton « Activer le son » le met.
+- Les images d'illustration viennent de Pexels (licence gratuite, utilisation commerciale autorisée, sans mention obligatoire). Les autres photos sont celles de Yannick.
+- La musique a été composée par programme pour ce site : elle n'est soumise à aucun droit d'auteur.

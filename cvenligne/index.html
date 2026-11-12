@@ -6,7 +6,7 @@
 <title>Yannick Akesse — Coach en anglais professionnel, formateur et interprète</title>
 <meta name="description" content="Yannick Akesse, coach en anglais professionnel, formateur et interprète anglais-français à Abidjan, fondateur de SpeakPro Academy.">
 <meta name="author" content="Yannick Akesse">
-<meta name="theme-color" content="#F5F1EA">
+<meta name="theme-color" content="#141312">
 <meta property="og:type" content="profile">
 <meta property="og:title" content="Yannick Akesse — Coach en anglais professionnel, formateur et interprète">
 <meta property="og:description" content="Coaching en anglais professionnel, formation en entreprise, interprétation anglais-français. Fondateur de SpeakPro Academy.">
@@ -25,17 +25,15 @@
 <style>
 /* ============ Couleurs et typographie ============ */
 :root{
-  --bg:#F5F1EA;--surface:#FBF9F5;--text:#1F1D1B;--muted:#5E5952;--soft:#8B857C;--line:rgba(31,29,27,.12);
-  --accent:#A9532F;--accent-bg:#B45A38;--accent-l:#E2A07F;--sand:#ECE5D9;
+  color-scheme:dark;
+  --bg:#141312;--surface:#1D1C1A;--text:#F2EEE7;--muted:#B7B0A5;--soft:#8E887E;--line:rgba(242,238,231,.13);
+  --accent:#E2A07F;--accent-bg:#B45A38;--accent-l:#E2A07F;--sand:#1B1A18;
   --night:#07090D;--on-night:#F2EEE7;
   --serif:"Instrument Serif","Times New Roman",Georgia,serif;
   --sans:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
   --ease:cubic-bezier(.22,1,.36,1);
   --r:16px;--shadow:0 30px 60px -36px rgba(31,29,27,.45)
 }
-@media(prefers-color-scheme:dark){:root:not([data-theme=light]){
-  --bg:#151413;--surface:#1E1D1B;--text:#F2EEE7;--muted:#B7B0A5;--soft:#8E887E;--line:rgba(242,238,231,.13);
-  --accent:#E2A07F;--accent-bg:#B45A38;--sand:#201E1B}}
 *{box-sizing:border-box}
 html{scroll-padding-top:90px;-webkit-text-size-adjust:100%}
 body{margin:0;background:var(--bg);color:var(--text);font:16px/1.7 var(--sans);overflow-x:hidden;-webkit-font-smoothing:antialiased}
@@ -107,7 +105,7 @@ nav a.on{color:var(--bg)}
 .cta{display:flex;flex-wrap:wrap;align-items:center;gap:14px 34px;margin-top:40px}
 .btn{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:0 30px;text-decoration:none;font:600 .74rem/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;border:1px solid var(--text);transition:background .35s,color .35s,border-color .35s;overflow:hidden}
 .btn.pri{background:var(--accent-bg);border-color:var(--accent-bg);color:#fff}
-.btn.pri::after{content:"";position:absolute;inset:0;background:var(--text);transform:translateY(101%);transition:transform .45s var(--ease)}
+.btn.pri::after{content:"";position:absolute;inset:0;background:#8E4325;transform:translateY(101%);transition:transform .45s var(--ease)}
 .btn.pri:hover::after{transform:none}
 .btn span{position:relative;z-index:1}
 .tlink{font:600 .74rem/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--muted);text-decoration:none;padding:8px 0;background:linear-gradient(currentColor,currentColor) 0 100%/0 1px no-repeat;transition:background-size .45s var(--ease),color .3s}
@@ -196,7 +194,8 @@ h1 .ln:nth-child(2)>span{transition-delay:.12s}
 @media(max-width:860px){.exp{gap:70px}.exp article{grid-template-columns:1fr;gap:28px}.exp article:nth-child(even) .media{order:0}}
 .exp .media{margin:0}
 .exp .media .ph{border-radius:var(--r);overflow:hidden}
-.exp .media img{width:100%;aspect-ratio:4/3;object-fit:cover}
+.exp .media{max-width:500px;width:100%;justify-self:center}
+.exp .media img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:50% 30%}
 .exp .media figcaption{font-size:.78rem;color:var(--soft);margin-top:12px;letter-spacing:.04em}
 .exp .n{font:italic 1.1rem var(--serif);color:var(--accent)}
 .exp h3{font-size:clamp(2.2rem,4vw,3.2rem);margin:8px 0 6px}
@@ -241,23 +240,29 @@ h1 .ln:nth-child(2)>span{transition-delay:.12s}
 @media(max-width:800px){.cine .kicker{letter-spacing:.24em}.cine .more{grid-template-columns:1fr;gap:20px;margin-top:80px}}
 
 /* ============ Approche ============ */
-.goals{display:flex;flex-wrap:wrap;gap:10px;list-style:none;padding:0;margin:34px 0 0}
-.goals li{border:1px solid var(--line);border-radius:99px;padding:9px 18px;background:var(--surface);font-size:.92rem;opacity:0;transform:scale(.85);transition:opacity .6s,transform .7s var(--ease),background .3s,color .3s;transition-delay:calc(var(--i)*70ms)}
-.goals.in li{opacity:1;transform:none}
-.goals li:hover{background:var(--accent-bg);color:#fff;border-color:var(--accent-bg)}
-.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:70px;border-top:1px solid var(--line)}
-@media(max-width:820px){.steps{grid-template-columns:1fr}}
-.steps>div{padding:34px 30px 34px 0;border-bottom:1px solid var(--line)}
-.steps>div+div{padding-left:30px;border-left:1px solid var(--line)}
-@media(max-width:820px){.steps>div+div{padding-left:0;border-left:0}}
-.num{font:italic 4.2rem/1 var(--serif);color:var(--accent);margin-bottom:18px}
-.steps h3,.formats h3{font-size:1.8rem;margin-bottom:10px}
-.steps p,.formats p{margin:0;color:var(--muted);font-size:.95rem}
-.formats{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:40px}
-@media(max-width:820px){.formats{grid-template-columns:1fr}}
-.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:30px;transition:transform .5s var(--ease),box-shadow .5s var(--ease)}
-.card:hover{transform:translateY(-6px);box-shadow:var(--shadow)}
-.note{margin-top:34px;font-size:.95rem;color:var(--muted);max-width:75ch}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.want{margin:56px 0 0;padding:46px 0 48px;border-top:1px solid var(--line)}
+.want-l{font:italic clamp(1.4rem,3vw,2rem)/1 var(--serif);color:var(--soft);margin:0 0 12px}
+.want-w{font:italic clamp(2.4rem,6.4vw,5.2rem)/1.04 var(--serif);margin:0;min-height:1.1em;color:var(--accent);letter-spacing:-.02em}
+.want-w span{display:inline-block;transition:transform .55s var(--ease),opacity .45s,filter .45s}
+.want-w span.out{transform:translateY(-.35em);opacity:0;filter:blur(6px)}
+@media(max-width:700px){.want-w{font-size:1.95rem;min-height:3.2em}}
+.rows{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+.rows li{display:grid;grid-template-columns:120px 1fr 1.5fr;gap:28px;align-items:baseline;padding:34px 0;border-bottom:1px solid var(--line)}
+.rows h3{font-size:clamp(1.9rem,3.4vw,2.6rem)}
+.rows p{margin:0;color:var(--muted)}
+.steps .num{font:italic 3.4rem/1 var(--serif);color:var(--accent)}
+.fmt-t{margin-top:90px}
+.formats li{grid-template-columns:1fr 1.5fr 48px;transition:padding .5s var(--ease)}
+.formats .arr{justify-self:end;text-decoration:none;font-size:1.4rem;color:var(--soft);transition:transform .5s var(--ease),color .3s}
+@media(hover:hover){.formats li:hover{padding-left:14px}.formats li:hover h3{font-style:italic;color:var(--accent)}.formats li:hover .arr{transform:translateX(6px) rotate(-45deg);color:var(--accent)}}
+@media(max-width:760px){
+  .rows li{grid-template-columns:auto 1fr;gap:8px 18px;padding:26px 0}
+  .rows li p{grid-column:1/-1}
+  .steps .num{font-size:2.4rem}
+  .formats li{grid-template-columns:1fr auto}
+  .formats .arr{grid-row:1;grid-column:2}
+}
 
 /* ============ Collaborations ============ */
 .collab{display:grid;grid-template-columns:.8fr 1.2fr;gap:60px}
@@ -338,18 +343,20 @@ h1 .ln:nth-child(2)>span{transition-delay:.12s}
 .works .card p{color:rgba(246,239,229,.75)}
 .works .card .status{color:#F3C08C}
 .works .card h3{font-size:1.7rem;margin-top:14px}
-.works .card img{border-radius:12px;margin-bottom:20px;aspect-ratio:4/3;object-fit:cover;object-position:center 30%;width:100%}
+.book{perspective:1100px;display:grid;place-items:center;padding:14px 0 30px}
+.book img{width:min(230px,70%);border-radius:3px 8px 8px 3px;box-shadow:-10px 0 0 -4px rgba(255,255,255,.08),24px 30px 50px -20px rgba(0,0,0,.8);transform:rotateY(-16deg) rotateX(4deg);transition:transform .8s var(--ease)}
+.card:hover .book img{transform:rotateY(0) rotateX(0) scale(1.03)}
 .campus .eyebrow.w0{color:rgba(246,239,229,.7)}
 
 /* ============ Galerie ============ */
-.gallery{display:grid;grid-template-columns:repeat(6,1fr);grid-auto-rows:170px;gap:14px;margin-top:50px}
+.gallery{display:grid;grid-template-columns:1.1fr .9fr 1.2fr;grid-auto-rows:460px;gap:14px;margin-top:50px}
 .gallery figure{margin:0;border-radius:var(--r);overflow:hidden;position:relative;background:var(--sand)}
 .gallery img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease)}
 .gallery figure:hover img{transform:scale(1.06)}
 .gallery figcaption{position:absolute;left:0;right:0;bottom:0;padding:30px 16px 12px;font-size:.78rem;color:#fff;background:linear-gradient(transparent,rgba(0,0,0,.65));transform:translateY(8px);opacity:.9;transition:transform .5s var(--ease),opacity .5s}
 .gallery figure:hover figcaption{transform:none;opacity:1}
-.g1{grid-column:span 4;grid-row:span 2}.g2{grid-column:span 2;grid-row:span 2}.g3{grid-column:span 3;grid-row:span 2}.g4{grid-column:span 3;grid-row:span 2}
-@media(max-width:700px){.gallery{grid-template-columns:1fr 1fr;grid-auto-rows:130px}.g1,.g3,.g4{grid-column:span 2}.g2{grid-column:span 2;grid-row:span 3}}
+.gallery .g2 img{object-position:50% 20%}
+@media(max-width:800px){.gallery{grid-template-columns:1fr;grid-auto-rows:400px}}
 
 /* ============ Témoignages ============ */
 .testi{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px;margin-top:34px}
@@ -471,7 +478,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
   <p class="lead rv" data-i18n="e2">Chaque facette de ce parcours nourrit les autres et sert le même objectif : vous permettre d'utiliser l'anglais avec précision, dans votre métier et face à vos interlocuteurs.</p>
   <div class="exp">
     <article class="rv">
-      <figure class="media"><div class="ph reveal-img"><img src="media/seance-speak-practice.webp" width="1100" height="370" alt="Séance de coaching en anglais : apprenants autour d'une table, tableau « Speak · Practice · Improve »" loading="lazy"></div><figcaption data-i18n="x1c">Séance de pratique en groupe.</figcaption></figure>
+      <figure class="media"><div class="ph reveal-img"><img src="media/coaching-anglais-affaires.webp" width="1200" height="1325" alt="Yannick Akesse aux côtés d'une apprenante qui présente son attestation de formation en anglais des affaires" loading="lazy"></div><figcaption data-i18n="x1c">Fin d'une formation en anglais des affaires.</figcaption></figure>
       <div>
         <span class="n">01</span>
         <h3>English Coaching</h3>
@@ -481,7 +488,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
       </div>
     </article>
     <article class="rv">
-      <figure class="media"><div class="ph reveal-img"><img src="media/remise-certificats.webp" width="807" height="531" alt="Apprenants présentant leur certificat à la fin d'une formation" loading="lazy"></div><figcaption data-i18n="x2c">Remise de certificats en fin de formation.</figcaption></figure>
+      <figure class="media"><div class="ph reveal-img"><img src="media/formation-anglais-intermediaire.webp" width="944" height="1379" alt="Yannick Akesse avec deux apprenants qui présentent leur attestation de formation en anglais intermédiaire" loading="lazy"></div><figcaption data-i18n="x2c">Fin d'une formation en anglais intermédiaire.</figcaption></figure>
       <div>
         <span class="n">02</span>
         <h3>Education and Training</h3>
@@ -522,20 +529,22 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
   <p class="eyebrow" data-i18n="p0">Approche</p>
   <h2 class="rv" data-split data-i18n="p1">Vous n'apprenez pas l'anglais <em class="accent">pour l'anglais.</em></h2>
   <p class="lead rv" data-i18n="p2">Le rôle d'un coach ne se limite pas à transmettre des connaissances : il s'agit d'identifier les blocages, de construire une méthode adaptée, de pratiquer régulièrement et d'accompagner l'apprenant jusqu'à ce qu'il gagne en autonomie et en confiance.</p>
-  <ul class="goals">
-    <li data-i18n="g1">Décrocher un emploi</li><li data-i18n="g2">Réussir un entretien</li><li data-i18n="g3">Participer à une réunion internationale</li><li data-i18n="g4">Présenter un projet</li><li data-i18n="g5">Communiquer avec des collègues ou partenaires étrangers</li><li data-i18n="g6">Préparer le TOEFL, le TOEIC ou un concours</li><li data-i18n="g7">Oser enfin parler anglais</li>
+  <div class="want rv">
+    <p class="want-l" data-i18n="gw">L'anglais pour</p>
+    <p class="want-w" aria-hidden="true"><span id="rot">décrocher un emploi.</span></p>
+    <ul class="sr-only" id="goals"><li data-i18n="g1">Décrocher un emploi</li><li data-i18n="g2">Réussir un entretien</li><li data-i18n="g3">Participer à une réunion internationale</li><li data-i18n="g4">Présenter un projet</li><li data-i18n="g5">Communiquer avec des collègues ou partenaires étrangers</li><li data-i18n="g6">Préparer le TOEFL, le TOEIC ou un concours</li><li data-i18n="g7">Oser enfin parler anglais</li></ul>
+  </div>
+  <ol class="rows steps">
+    <li class="rv"><span class="num">01</span><h3 data-i18n="s1t">Évaluer</h3><p data-i18n="s1">Comprendre votre niveau réel, vos blocages et l'objectif que vous voulez atteindre.</p></li>
+    <li class="rv"><span class="num">02</span><h3 data-i18n="s2t">Construire</h3><p data-i18n="s2">Concevoir un programme adapté à votre métier, à votre examen ou à votre situation.</p></li>
+    <li class="rv"><span class="num">03</span><h3 data-i18n="s3t">Pratiquer</h3><p data-i18n="s3">Utiliser l'anglais pour de vrai : pratique orale, mises en situation, corrections et suivi jusqu'à l'aisance.</p></li>
+  </ol>
+  <p class="eyebrow fmt-t" data-i18n="fo0">Formats</p>
+  <ul class="rows formats">
+    <li class="rv"><h3 data-i18n="o1t">Coaching individuel</h3><p data-i18n="o1">Un suivi personnalisé, à votre rythme, centré sur vos objectifs professionnels ou académiques.</p><a class="arr" href="#contact" aria-label="Contact">→</a></li>
+    <li class="rv"><h3 data-i18n="o2t">Formation d'équipes</h3><p data-i18n="o2">Des sessions pour les collaborateurs et les groupes professionnels, en présentiel ou en ligne.</p><a class="arr" href="#contact" aria-label="Contact">→</a></li>
+    <li class="rv"><h3 data-i18n="o3t">Programmes spécialisés</h3><p data-i18n="o3">Business English, préparation au TOEFL / TOEIC, préparation à l'ENA et programme intensif.</p><a class="arr" href="#contact" aria-label="Contact">→</a></li>
   </ul>
-  <div class="steps">
-    <div class="rv"><div class="num">01</div><h3 data-i18n="s1t">Évaluer</h3><p data-i18n="s1">Comprendre votre niveau réel, vos blocages et l'objectif que vous voulez atteindre.</p></div>
-    <div class="rv" style="--d:.1s"><div class="num">02</div><h3 data-i18n="s2t">Construire</h3><p data-i18n="s2">Concevoir un programme adapté à votre métier, à votre examen ou à votre situation.</p></div>
-    <div class="rv" style="--d:.2s"><div class="num">03</div><h3 data-i18n="s3t">Pratiquer</h3><p data-i18n="s3">Utiliser l'anglais pour de vrai : pratique orale, mises en situation, corrections et suivi jusqu'à l'aisance.</p></div>
-  </div>
-  <div class="formats">
-    <div class="card rv"><h3 data-i18n="o1t">Coaching individuel</h3><p data-i18n="o1">Un suivi personnalisé, à votre rythme, centré sur vos objectifs professionnels ou académiques.</p></div>
-    <div class="card rv" style="--d:.1s"><h3 data-i18n="o2t">Formation d'équipes</h3><p data-i18n="o2">Des sessions pour les collaborateurs et les groupes professionnels, en présentiel ou en ligne.</p></div>
-    <div class="card rv" style="--d:.2s"><h3 data-i18n="o3t">Programmes spécialisés</h3><p data-i18n="o3">Business English, préparation au TOEFL / TOEIC, préparation à l'ENA et programme intensif.</p></div>
-  </div>
-  <p class="note" data-i18n="p3">Au programme selon les besoins : anglais général et professionnel, expression orale, compréhension, vocabulaire, grammaire, prononciation, mises en situation et communication professionnelle.</p>
 </div></section>
 
 <!-- COLLABORATIONS -->
@@ -621,7 +630,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
       <div>
         <p class="eyebrow w0" data-i18n="w0">Créations intellectuelles</p>
         <div class="works">
-          <div class="card rv"><img src="media/soutenance-master.webp" width="750" height="908" alt="Yannick Akesse en toge, avec son mémoire de master, entouré de deux membres du jury" loading="lazy">
+          <div class="card rv"><div class="book"><img src="media/memoire-couverture.webp" width="900" height="1300" alt="Page de couverture du mémoire de master « Fragmentation in The Woman Warrior by Maxine Hong Kingston », Université Félix Houphouët-Boigny, 2023-2024" loading="lazy"></div>
             <span class="status" data-i18n="w1s">Mémoire de master</span>
             <h3><em>Fragmentation in The Woman Warrior by Maxine Hong Kingston</em></h3>
             <p style="margin-top:8px" data-i18n="w1">Travail universitaire consacré à la littérature américaine.</p></div>
@@ -639,10 +648,9 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
   <p class="eyebrow" data-i18n="g0">En images</p>
   <h2 class="rv" data-split data-i18n="g01">Séances, formations et <em class="accent">remises de certificats.</em></h2>
   <div class="gallery">
-    <figure class="g1 rv"><img src="media/seance-global-english.webp" width="1100" height="494" alt="Séance « Global English Coaching » : apprenants installés autour des tables" loading="lazy"><figcaption data-i18n="gc1">Séance « Global English Coaching »</figcaption></figure>
+    <figure class="g1 rv"><img src="media/remise-attestations-groupe.webp" width="905" height="960" alt="Yannick Akesse entouré d'apprenants qui présentent leur attestation de formation" loading="lazy"><figcaption data-i18n="gc1">Remise d'attestations en fin de formation</figcaption></figure>
     <figure class="g2 rv" style="--d:.1s"><img src="media/yannick-seance.webp" width="840" height="1050" alt="Yannick Akesse animant une session de formation en anglais" loading="lazy"><figcaption data-i18n="gc2">Animation d'une session de formation</figcaption></figure>
     <figure class="g3 rv"><img src="media/certificats-groupe.webp" width="900" height="675" alt="Apprenants présentant leur certificat de formation" loading="lazy"><figcaption data-i18n="gc3">Fin de formation</figcaption></figure>
-    <figure class="g4 rv" style="--d:.1s"><img src="media/seance-pratique.webp" width="1040" height="468" alt="Apprenants en séance de pratique de l'anglais" loading="lazy"><figcaption data-i18n="gc4">Séance de pratique</figcaption></figure>
   </div>
 </div></section>
 
@@ -698,12 +706,12 @@ a3:"I then broadened my work to corporate training, professional English coachin
 a4:"Today, I bring these experiences together in SpeakPro Academy, the English learning and coaching platform I founded to make English more accessible and more useful for French-speaking professionals.",
 d1t:"Interpreting",d1:"teaches you to listen fast and accurately.",d2t:"Teaching",d2:"teaches you to explain simply.",d3t:"Coaching",d3:"builds practice until it feels natural.",
 e0:"Expertise",e1:"Three dimensions, <em class=\"accent\">one standard.</em>",e2:"Each side of this path feeds the others and serves the same goal: helping you use English precisely, in your job and with the people you work with.",
-x1c:"Group practice session.",x1s:"Professional English coaching",x1:"Speaking, listening, vocabulary, pronunciation and role-plays: support built around each person's job, level and goals.",x1a:"Meetings",x1b:"Interviews",x1d:"Presentations",x1e:"Discussions with partners",
-x2c:"Certificates awarded at the end of a course.",x2s:"Teaching and training",x2:"English courses delivered to companies and professional groups, in person and online, for learners with very different profiles.",x2a:"Chartered accountants",x2b:"Teachers",x2d:"Academics",x2e:"Business managers",x2f:"Education professionals",
+x1c:"End of a Business English course.",x1s:"Professional English coaching",x1:"Speaking, listening, vocabulary, pronunciation and role-plays: support built around each person's job, level and goals.",x1a:"Meetings",x1b:"Interviews",x1d:"Presentations",x1e:"Discussions with partners",
+x2c:"End of an intermediate English course.",x2s:"Teaching and training",x2:"English courses delivered to companies and professional groups, in person and online, for learners with very different profiles.",x2a:"Chartered accountants",x2b:"Teachers",x2d:"Academics",x2e:"Business managers",x2f:"Education professionals",
 i0:"03 — Translation and Interpreting",i1:"Understand quickly,",i2:"convey faithfully.",i3:"English ⇄ French translator and <em>interpreter</em>.",i5:"Get in touch",i6:"See my background",
 x3s:"Translation and interpreting",x3:"English-French / French-English translator and interpreter in meetings and professional exchanges, notably for MIDEQ, and with international delegations. These assignments taught me to grasp the context of an exchange quickly and to convey a message without losing its meaning, which is exactly what I now work on with learners.",x3b:"Nigeria",x3c:"India",
 p0:"Approach",p1:"You don't learn English <em class=\"accent\">for its own sake.</em>",p2:"A coach's role goes beyond passing on knowledge: it means identifying what holds you back, building the right method, practising regularly and supporting you until you become confident and independent.",
-g1:"Landing a job",g2:"Succeeding in an interview",g3:"Taking part in an international meeting",g4:"Presenting a project",g5:"Communicating with colleagues or partners abroad",g6:"Preparing for TOEFL, TOEIC or a competitive exam",g7:"Finally daring to speak English",
+gw:"English for",fo0:"Formats",g1:"Landing a job",g2:"Succeeding in an interview",g3:"Taking part in an international meeting",g4:"Presenting a project",g5:"Communicating with colleagues or partners abroad",g6:"Preparing for TOEFL, TOEIC or a competitive exam",g7:"Finally daring to speak English",
 s1t:"Assess",s1:"Understand your real level, what holds you back and the goal you want to reach.",s2t:"Build",s2:"Design a programme that fits your job, your exam or your situation.",s3t:"Practise",s3:"Use English for real: speaking practice, role-plays, corrections and follow-up until you feel at ease.",
 o1t:"One-to-one coaching",o1:"Personalised support at your pace, focused on your professional or academic goals.",o2t:"Team training",o2:"Sessions for staff and professional groups, in person or online.",o3t:"Specialised programmes",o3:"Business English, TOEFL / TOEIC preparation, ENA exam preparation and an intensive programme.",
 p3:"Depending on your needs: general and professional English, speaking, listening, vocabulary, grammar, pronunciation, role-plays and professional communication.",
@@ -721,7 +729,7 @@ t5w:"Training and coaching",t5:"Professional English trainer and coach",t5p:"Cor
 t6w:"Translation and interpreting",t6:"English ⇄ French translator and interpreter",t6p:"Meetings and professional exchanges, assignments for MIDEQ and support for international delegations.",
 t7w:"Entrepreneurship",t7:"Founder of SpeakPro Academy",t7p:"A more modern and accessible approach that puts practice, progress and professional goals first. Also the creator of Remind Me and Yanova Store.",
 w0:"Intellectual works",w1s:"Master's thesis",w1:"An academic study in American literature.",w2s:"Unpublished manuscript",w2:"A teaching manuscript of over 200 pages on learning English from French. Work in preparation, not yet available for purchase.",
-g0:"In pictures",g01:"Sessions, courses and <em class=\"accent\">certificate ceremonies.</em>",gc1:"“Global English Coaching” session",gc2:"Leading a training session",gc3:"End of a course",gc4:"Practice session",
+g0:"In pictures",g01:"Sessions, courses and <em class=\"accent\">certificate ceremonies.</em>",gc1:"Certificates awarded at the end of a course",gc2:"Leading a training session",gc3:"End of a course",
 q0:"Testimonials",q1:"They worked with me.",
 k0:"Contact",k1:"Let's talk about <em class=\"accent\">your English goals.</em>",k2:"One-to-one coaching, team training, interpreting or collaboration: one message is enough to get started.",k3:"Message on WhatsApp",k4:"Send an email",k5:"Save contact",k6:"Email",k7:"Other number",
 ft:"Professional English coach · Abidjan"}};
@@ -824,7 +832,12 @@ if('IntersectionObserver' in window){
   const so=new IntersectionObserver(es=>es.forEach(x=>{if(x.isIntersecting){links.forEach(a=>a.classList.toggle('on',a.getAttribute('href')==='#'+x.target.id));moveIndicator()}}),{rootMargin:'-45% 0px -50% 0px'});
   secs.forEach(s=>so.observe(s));
 }else{document.querySelectorAll('.rv,.goals,.reveal-img').forEach(e=>e.classList.add('in'))}
-document.querySelectorAll('.goals li').forEach((li,i)=>li.style.setProperty('--i',i));
+/* Objectifs qui défilent dans « L'anglais pour… » */
+const rot=document.getElementById('rot');let gi=0;
+const goalsList=()=>[...document.querySelectorAll('#goals li')].map(li=>{const t=li.textContent.trim();return t.charAt(0).toLowerCase()+t.slice(1)+'.'});
+function setGoal(){const g=goalsList();rot.textContent=g[gi%g.length]}
+setGoal();document.querySelectorAll('.lang button').forEach(b=>b.addEventListener('click',setGoal));
+if(!RM)setInterval(()=>{rot.classList.add('out');setTimeout(()=>{gi++;setGoal();rot.classList.remove('out')},480)},2800);
 addEventListener('beforeprint',()=>document.querySelectorAll('.rv,.goals,.reveal-img').forEach(e=>e.classList.add('in')));
 
 /* Particules lumineuses du campus */

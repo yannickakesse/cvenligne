@@ -1,4 +1,3 @@
-<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -8,6 +7,8 @@
 <meta name="description" content="Yannick Akesse, coach en anglais professionnel, formateur et interprète anglais-français à Abidjan, fondateur de SpeakPro Academy.">
 <meta name="author" content="Yannick Akesse">
 <meta name="theme-color" content="#141312">
+<script>try{var t=new URLSearchParams(location.search).get('theme')||localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.dataset.theme=t}catch(e){}</script>
+
 <meta property="og:type" content="profile">
 <meta property="og:title" content="Yannick Akesse — Coach en anglais professionnel, formateur et interprète">
 <meta property="og:description" content="Coaching en anglais professionnel, formation en entreprise, interprétation anglais-français. Fondateur de SpeakPro Academy.">
@@ -476,6 +477,45 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 .no-js .tags li::after{transform:none}
 .no-js .circuit .n{opacity:1;transform:none}.no-js .circuit .run{stroke-dashoffset:0}.no-js .journey::after{transform:none}
 .no-js #intro{display:none}
+
+/* ============ Bulle qui voyage (étapes et profils) ============ */
+.tdot{position:absolute;left:0;top:0;width:10px;height:10px;margin:-5px 0 0 -5px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px color-mix(in srgb,var(--accent) 22%,transparent),0 0 16px var(--accent);pointer-events:none;opacity:0;transition:opacity .45s;will-change:transform}
+.tdot.on{opacity:1}
+.journey-dot{z-index:2}
+.tags li{z-index:1}
+.journey li::before{transition:background .4s,box-shadow .5s}
+.journey li.hit::before{background:var(--accent);box-shadow:0 0 0 7px color-mix(in srgb,var(--accent) 20%,transparent)}
+.journey li h3{transition:color .4s}
+.journey li.hit h3{color:var(--accent)}
+.tags li.hit{border-color:var(--accent);box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 18%,transparent)}
+
+/* ============ Route qui accompagne le défilement ============ */
+#road{position:absolute;left:0;top:0;width:100%;pointer-events:none;z-index:40;overflow:visible}
+#road .rt{fill:none;stroke:var(--accent);stroke-opacity:.22;stroke-width:1.5;stroke-dasharray:2 7;stroke-linecap:round}
+#road .rp{fill:none;stroke:var(--accent);stroke-width:2;stroke-linecap:round;stroke-opacity:.85}
+#road .ms{fill:var(--bg);stroke:var(--accent);stroke-opacity:.5;stroke-width:1.5;transition:fill .4s,stroke-opacity .4s}
+#road .ms.hit{fill:var(--accent);stroke-opacity:1}
+#road .head{fill:var(--accent)}
+#road .halo{fill:var(--accent);opacity:.18;transform-box:fill-box;transform-origin:center;animation:halo 2.2s ease-out infinite}
+@keyframes halo{from{transform:scale(.6);opacity:.35}to{transform:scale(2.2);opacity:0}}
+#road .fin{fill:none;stroke:var(--accent);stroke-width:1.5}
+#road .fin-c{fill:var(--accent)}
+@media print{#road,.tdot{display:none}}
+
+/* ============ Thème clair ============ */
+:root[data-theme=light]{
+  color-scheme:light;
+  --bg:#F7F2EA;--surface:#FFFFFF;--text:#1C1A17;--muted:#5C564D;--soft:#7D7569;--line:rgba(28,26,23,.12);
+  --accent:#A44E2D;--accent-bg:#B45A38;--accent-l:#E2A07F;--sand:#EFE7DB;
+  --shadow:0 30px 60px -36px rgba(70,45,25,.28)
+}
+:root[data-theme=light] .logo .mono{border-color:rgba(28,26,23,.2)}
+/* Bouton clair / sombre */
+.theme{display:grid;place-items:center;width:44px;height:44px;padding:0;cursor:pointer;color:var(--text);font:1.05rem/1 var(--sans)}
+.theme svg{width:18px;height:18px}
+.theme .sun{display:none}
+:root[data-theme=light] .theme .sun{display:block}
+:root[data-theme=light] .theme .moon{display:none}
 </style>
 </head>
 <body class="no-js">
@@ -494,6 +534,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
     <li><a href="#contact" data-i18n="n6">Contact</a></li>
   </ul></nav>
   <div class="tools">
+    <button class="theme pill" id="theme" type="button" aria-label="Thème clair / sombre" title="Thème clair / sombre"><svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4 8 8 0 1 0 20 14.5z"/></svg><svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></button>
     <div class="lang pill" role="group" aria-label="Langue / Language"><button type="button" data-l="fr" aria-pressed="true" lang="fr">FR</button><button type="button" data-l="en" aria-pressed="false" lang="en">EN</button></div>
     <button class="burger pill" id="burger" type="button" aria-label="Menu" aria-expanded="false" aria-controls="nav"><i></i><i></i></button>
   </div>
@@ -653,10 +694,10 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
   <h2 class="rv" data-split data-i18n="j1">Des idées qui <em class="accent">prennent forme.</em></h2>
   <p class="lead rv" data-i18n="j2">Trois projets, trois façons d'entreprendre : l'éducation, la productivité et le commerce en ligne.</p>
 
-  <article class="feat rv">
+  <article class="feat">
     <div class="shots"><div class="tilt">
-      <img src="media/projets/speakpro-accueil.webp" width="1200" height="625" alt="Capture d'écran de la page d'accueil de SpeakPro Academy" loading="lazy">
-      <img src="media/projets/speakpro-profil-coach.webp" width="1200" height="625" alt="Capture d'écran du profil de coach de Yannick Akesse sur SpeakPro Academy" loading="lazy">
+      <img src="media/projets/speakpro-accueil.webp" width="1200" height="625" alt="Capture d'écran de la page d'accueil de SpeakPro Academy" fetchpriority="high">
+      <img src="media/projets/speakpro-profil-coach.webp" width="1200" height="625" alt="Capture d'écran du profil de coach de Yannick Akesse sur SpeakPro Academy" fetchpriority="high">
     </div></div>
     <div class="body">
       <span class="status" data-i18n="j3s">Plateforme en ligne</span>
@@ -989,7 +1030,79 @@ function start(){body.classList.add('ready');moveIndicator();onScroll()}
 if(RM||seen){intro.remove();requestAnimationFrame(start)}
 else{setTimeout(()=>{intro.classList.add('out');setTimeout(start,350);setTimeout(()=>intro.remove(),1300)},1000)}
 </script>
+<script>
+(function(){var r=document.documentElement,m=document.querySelector('meta[name=theme-color]'),b=document.getElementById('theme');
+function apply(t){if(t==='light')r.dataset.theme='light';else r.removeAttribute('data-theme');if(m)m.content=t==='light'?'#F7F2EA':'#141312'}
+apply(r.dataset.theme==='light'?'light':'dark');
+b.addEventListener('click',function(){var t=r.dataset.theme==='light'?'dark':'light';apply(t);try{localStorage.setItem('theme',t)}catch(e){}});})();
+</script>
+<script>
+(function(){
+var RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
+/* --- Bulle qui passe d'une étape à l'autre --- */
+function travel(list,items,cls){
+  if(RM||!list||items.length<2)return;
+  var host=list.parentNode;if(getComputedStyle(host).position==='static')host.style.position='relative';
+  var d=document.createElement('span');d.className='tdot '+(cls||'');d.setAttribute('aria-hidden','true');host.appendChild(d);
+  var P=[];function calc(){var b=host.getBoundingClientRect();P=items.map(function(n){var r=n.getBoundingClientRect();return cls==='journey-dot'?[r.left-b.left+8.5,r.top-b.top+8.5]:[r.left-b.left+r.width/2,r.top-b.top+r.height/2]})}
+  var STAY=900,MOVE=1100,REST=1400,N=items.length,CYCLE=N*STAY+(N-1)*MOVE+REST,t0=null,vis=false,ready=false,cur=-1;
+  new IntersectionObserver(function(e){vis=e[0].isIntersecting;if(vis&&!ready)setTimeout(function(){ready=true;calc()},1800)},{threshold:.3}).observe(list);
+  addEventListener('resize',calc);
+  function ease(x){return x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2}
+  function hit(i){if(i===cur)return;cur=i;items.forEach(function(n,k){n.classList.toggle('hit',i>=0&&k<=i)})}
+  function f(ts){requestAnimationFrame(f);if(!vis||!ready||!P.length){t0=null;return}
+    if(t0===null){t0=ts;calc()}var t=(ts-t0)%CYCLE,x,y,i;
+    if(t>=CYCLE-REST){d.classList.remove('on');if(t>CYCLE-REST/2)hit(-1);return}
+    d.classList.add('on');
+    i=Math.floor(t/(STAY+MOVE));var r=t-i*(STAY+MOVE);
+    if(r<STAY||i>=N-1){i=Math.min(i,N-1);x=P[i][0];y=P[i][1];hit(i)}
+    else{var k=ease((r-STAY)/MOVE);x=P[i][0]+(P[i+1][0]-P[i][0])*k;y=P[i][1]+(P[i+1][1]-P[i][1])*k}
+    d.style.transform='translate('+x+'px,'+y+'px)'}
+  requestAnimationFrame(f)}
+var j=document.querySelector('.journey');if(j)travel(j,[].slice.call(j.children),'journey-dot');
+document.querySelectorAll('.tags').forEach(function(u){if(u.querySelector('[data-i18n=x2a]'))travel(u,[].slice.call(u.children),'')});
+
+/* --- Route sinueuse du haut de la page jusqu'au contact --- */
+var NS='http://www.w3.org/2000/svg',svg=document.createElementNS(NS,'svg');svg.id='road';svg.setAttribute('aria-hidden','true');
+function el(n,c){var e=document.createElementNS(NS,n);if(c)e.setAttribute('class',c);svg.appendChild(e);return e}
+var track=el('path','rt'),prog=el('path','rp'),gms=el('g'),fin=el('g'),halo=el('circle','halo'),head=el('circle','head');
+halo.setAttribute('r',7);head.setAttribute('r',4);
+document.body.appendChild(svg);
+var L=0,S=[],MS=[];
+function build(){
+  var W=document.documentElement.clientWidth,secs=[].slice.call(document.querySelectorAll('body section')).filter(function(s){return s.offsetHeight>0}).map(function(s){var r=s.getBoundingClientRect();return {top:r.top+scrollY,bot:r.bottom+scrollY}}).sort(function(a,b){return a.top-b.top});
+  if(!secs.length)return;
+  var c=document.getElementById('contact'),endY=c?c.getBoundingClientRect().top+scrollY+150:secs[secs.length-1].bot-80;
+  var m=(W-Math.min(W,1180))/2,gx=Math.max(9,Math.min(80,(m+24)/2)),a=Math.max(3,Math.min(22,gx-6)),X=[gx,W-gx],side=0,pts=[],mss=[],y=110;
+  var R=[].slice.call(document.querySelectorAll('h1,h2,h3,p,li,img,video,figure,.btn,.film-box,.feat,.circuit')).map(function(e){var r=e.getBoundingClientRect();return r.width&&r.height?[r.left,r.right,r.top+scrollY,r.bottom+scrollY]:null}).filter(Boolean);
+  function clear(b){for(var n=0;n<R.length;n++){var r=R[n];if(r[2]<b+95&&r[3]>b-95&&r[1]>gx+12&&r[0]<W-gx-12)return false}return true}
+  pts.push([X[0],y]);
+  for(var i=0;i<secs.length;i++){var s=secs[i],x=X[side],b=i<secs.length-1?secs[i+1].top:endY;if(s.top>=endY)break;
+    var cross=i<secs.length-1&&b<endY&&b-Math.max(y,s.top)>260&&clear(b),y1=Math.min(b,endY)-(cross?90:0),yy=Math.max(y,s.top)+60,w=1;
+    while(yy<y1-120){pts.push([x+(w*a)*(side?-1:1),yy+80]);yy+=260;w=-w}
+    if(cross){pts.push([x,b-90]);pts.push([W/2,b]);side=1-side;pts.push([X[side],b+90]);mss.push([W/2,b]);y=b+90}
+  }
+  pts.push([X[side],endY]);
+  var dd='M'+pts[0][0]+' '+pts[0][1];
+  for(var k=0;k<pts.length-1;k++){var p0=pts[k-1]||pts[k],p1=pts[k],p2=pts[k+1],p3=pts[k+2]||p2;
+    dd+=' C'+(p1[0]+(p2[0]-p0[0])/6)+' '+(p1[1]+(p2[1]-p0[1])/6)+' '+(p2[0]-(p3[0]-p1[0])/6)+' '+(p2[1]-(p3[1]-p1[1])/6)+' '+p2[0]+' '+p2[1]}
+  svg.style.height='0px';var H=document.documentElement.scrollHeight;svg.setAttribute('viewBox','0 0 '+W+' '+H);svg.style.height=H+'px';
+  track.setAttribute('d',dd);prog.setAttribute('d',dd);L=prog.getTotalLength();prog.style.strokeDasharray=L;
+  S=[];for(var q=0;q<=800;q++){var pt=prog.getPointAtLength(L*q/800);S.push([L*q/800,pt.y])}
+  gms.innerHTML='';MS=mss.map(function(p){var e=document.createElementNS(NS,'circle');e.setAttribute('class','ms');e.setAttribute('cx',p[0]);e.setAttribute('cy',p[1]);e.setAttribute('r',4.5);gms.appendChild(e);return {e:e,y:p[1]}});
+  var e2=pts[pts.length-1];fin.innerHTML='<circle class="fin" cx="'+e2[0]+'" cy="'+e2[1]+'" r="9"/><circle class="fin-c" cx="'+e2[0]+'" cy="'+e2[1]+'" r="4.5"/>';
+  update()}
+function lenAtY(y){var lo=0,hi=S.length-1;if(y<=S[0][1])return 0;if(y>=S[hi][1])return L;while(hi-lo>1){var mid=(lo+hi)>>1;if(S[mid][1]<y)lo=mid;else hi=mid}var a=S[lo],b=S[hi];return a[0]+(b[0]-a[0])*((y-a[1])/Math.max(1,b[1]-a[1]))}
+var ticking=false;
+function update(){ticking=false;if(!L)return;var l=RM?L:lenAtY(scrollY+innerHeight*.62);
+  prog.style.strokeDashoffset=L-l;var p=prog.getPointAtLength(l);head.setAttribute('cx',p.x);head.setAttribute('cy',p.y);halo.setAttribute('cx',p.x);halo.setAttribute('cy',p.y);
+  MS.forEach(function(m){m.e.classList.toggle('hit',m.y<=p.y+1)})}
+addEventListener('scroll',function(){if(!ticking){ticking=true;requestAnimationFrame(update)}},{passive:true});
+var rt,lastH=0;function later(){clearTimeout(rt);rt=setTimeout(function(){var h=document.body.offsetHeight;if(h!==lastH){lastH=h;build()}},250)}
+addEventListener('resize',function(){lastH=0;later()});addEventListener('load',function(){lastH=0;later()});
+if(window.ResizeObserver)new ResizeObserver(later).observe(document.body);
+build();
+})();
+</script>
 </body>
 </html>
-
-</body></html>
